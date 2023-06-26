@@ -1,4 +1,4 @@
-import RequestItem from '@/components/RequestItem'
+import RequestItem from '@/components/RequestTable'
 import styles from './page.module.css'
 import ProductsTable from '@/components/ProductsTable'
 

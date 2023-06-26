@@ -86,6 +86,21 @@ const RequestItem = () => {
             })
     };
 
+    const handleDeleteItem = async (id) => {
+        await api.delete(`/itens/${id}`)
+            .then(res => window.alert(res.data))
+            .catch(error => {
+                if (error.message) {
+                    return window.alert(error.response.data);
+                }
+                else {
+                    return window.alert('Erro', error.message);
+                }
+            })
+        setNewItem([]);
+        setPedidoById([]);
+    };
+
     return (
         <div>
             {
@@ -153,6 +168,7 @@ const RequestItem = () => {
                                         <th>Nome do Produto</th>
                                         <th>Quantidade</th>
                                         <th>Valor</th>
+                                        <th>Excluir</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -164,6 +180,7 @@ const RequestItem = () => {
                                                     <td>{item.produto.nome}</td>
                                                     <td>{item.quantidade}</td>
                                                     <td>{item.valor}</td>
+                                                    <td><AiOutlineDelete color='red' className={Styles.icon} onClick={() => handleDeleteItem(item.id)} /></td>
                                                 </tr>
                                             )
                                         })
